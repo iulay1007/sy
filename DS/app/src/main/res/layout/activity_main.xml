@@ -11,7 +11,7 @@
         android:id="@+id/TV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="70dp"
+        android:textSize="55dp"
         android:background="#F5C3D4"
         android:layout_weight="1.5"/>
 

@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -35,16 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button button17;
     Button button18;
     TextView TV;
-    String strre="";
     boolean flag=true;
-    boolean flagf=true;
     boolean jia=false;
     boolean jian=false;
     boolean cheng=false;
     boolean chu=false;
     double a,b,f,g;
-    int iresult=0;
-    double result=0;
 
 
     @Override
@@ -104,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       try {
           switch (v.getId()) {
               case R.id.button16:
-                  if (str.startsWith("="))
+
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "0");
                   TV.setText(str);
@@ -112,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button12:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "1");
                   TV.setText(str);
@@ -120,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button13:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "2");
                   TV.setText(str);
@@ -128,14 +125,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button14:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "3");
                   TV.setText(str);
                   break;
 
               case R.id.button8:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "4");
                   TV.setText(str);
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button9:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "5");
                   TV.setText(str);
@@ -151,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button10:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "6");
                   TV.setText(str);
@@ -159,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button4:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "7");
                   TV.setText(str);
@@ -167,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button5:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "8");
                   TV.setText(str);
@@ -175,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button6:
-                  if (str.startsWith("="))
+                  if (str.startsWith("=")||str.contains("不"))
                       str = "";
                   str = (str + "9");
                   TV.setText(str);
@@ -199,22 +196,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button15:
-               /* if(flag){
-                    TV.setText("");
-                }
-                if(flagf=false)
-                {
-                    try{  TV.setText(str.substring(0,str.length()-1));
-                        if(str.length()==0)
-                            flag=true;
-                }catch (Exception e){ TV.setText("");
-                    }*/
                   if (strre.startsWith("="))
                       str = strre.substring(1, str.length());
                   str = (str + "+");
                   TV.setText(str);
                   break;
-              //  flagf=false;
+
 
               case R.id.button11:
                   if (strre.startsWith("="))
@@ -243,106 +230,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                   break;
 
               case R.id.button18:
-
-                  // if(str startsWith(String +));
                   jia = str.contains("+");
                   jian = str.contains("-");
                   cheng = str.contains("x");
                   chu = str.contains("÷");
-
-                  //  if(strre.startsWith("="))
-                  //  strre=strre.substring(1,str.length());
-
-
                   if (cheng || chu) {
                       if (cheng == true) {
                           a = Double.parseDouble(str.substring(0, str.indexOf("x")));
                           b = Double.parseDouble(str.substring(str.indexOf("x") + 1, str.length()));
-                          result = a * b;
-                          iresult = (int) result;
-                          if (iresult == result) {
-                              strre = "=" + String.valueOf(iresult);
-                              TV.setText(strre);
+                          BigDecimal c = new BigDecimal(Double.toString(a));
+                          BigDecimal d = new BigDecimal(Double.toString(b));
+                          BigDecimal e = c.multiply(d);
+                          strre = "=" + e.stripTrailingZeros().toPlainString();
+                          TV.setText(strre);
 
-                          } else {
-                              strre = "=" + String.valueOf(result);
-                              TV.setText(strre);
                           }
-                      } else if (chu == true) {
+                       else if (chu == true) {
                           a = Double.parseDouble(str.substring(0, str.indexOf("÷")));
                           b = Double.parseDouble(str.substring(str.indexOf("÷") + 1, str.length()));
                           if (b == 0) {
                               TV.setText("0不能做除数");
                               break;
                           }
-                          result = a / b;
-                          iresult = (int) result;
-                          if (iresult == result) {
-                              strre = "=" + String.valueOf(iresult);
-                              TV.setText(strre);
+                      BigDecimal c = new BigDecimal(Double.toString(a));
+                      BigDecimal d = new BigDecimal(Double.toString(b));
+                      BigDecimal e = c.divide(d,10, RoundingMode.HALF_UP);
+                          strre = "=" + e.stripTrailingZeros().toPlainString();
+                      TV.setText(strre);}
 
 
-                          } else {
-                              strre = "=" + String.valueOf(result);
-                              TV.setText(strre);
-                          }
-                      }
-                  } else if (jia == true) {
+                  }else if (jia == true) {
                       a = Double.parseDouble(str.substring(0, str.indexOf("+")));
                       b = Double.parseDouble(str.substring(str.indexOf("+"), str.length()));
-                      result = a + b;
-                      iresult = (int) result;
-                      if (iresult == result) {
-                          strre = "=" + String.valueOf(iresult);
-                          TV.setText(strre);
+                       BigDecimal c = new BigDecimal(Double.toString(a));
+                       BigDecimal d = new BigDecimal(Double.toString(b));
+                      BigDecimal e = c.add(d);
+                      strre = "=" + e.stripTrailingZeros().toPlainString();
+                      TV.setText(strre);}
 
-                      } else {
-                          strre = "=" + String.valueOf(result);
-                          TV.setText(strre);
-                      }
-                  } else if (jian == true) {
+                   else if (jian == true) {
                       if (str.startsWith("-")) {
                           f = Double.parseDouble(str.substring(0, str.lastIndexOf("-")));
                           g = Double.parseDouble(str.substring(str.lastIndexOf("-") + 1, str.length()));
-                          // BigDecimal c = new BigDecimal(Double.toString(f));
-                          // BigDecimal d = new BigDecimal(Double.toString(g));
-                          //BigDecimal e = c.subtract(d);
-
-                          double tresult;
-                          tresult = f - g;
-                          iresult=(int)tresult;
-                          //tresult = e.doubleValue();
-                          //iresult = e.intValue();
-                         if (iresult == tresult) {
-                              strre = "=" + String.valueOf(iresult);
-                              TV.setText(strre);
-
-                          } else {
-                          strre = "=" + String.valueOf(tresult);
-                          TV.setText(strre);
-                      } }else {
+                          BigDecimal c = new BigDecimal(Double.toString(f));
+                          BigDecimal d = new BigDecimal(Double.toString(g));
+                          BigDecimal e = c.subtract(d);
+                          strre = "=" + e.stripTrailingZeros().toPlainString();
+                          TV.setText(strre);}
+                         else {
                           f = Double.parseDouble(str.substring(0, str.indexOf("-")));
                           g = Double.parseDouble(str.substring(str.indexOf("-") + 1, str.length()));
-                          //  BigDecimal c = new BigDecimal(Double.toString(f));
-                          //   BigDecimal d = new BigDecimal(Double.toString(g));
-                          //  BigDecimal e = c.subtract(d);
-                          double tresult;
-                          tresult = f - g;
-                          iresult=(int)tresult;
-                          //tresult = e.doubleValue();
-                          // iresult = e.intValue();
-                       if (iresult == tresult) {
-                              strre = "=" + String.valueOf(iresult);
-                              TV.setText(strre);
+                           BigDecimal c = new BigDecimal(Double.toString(f));
+                          BigDecimal d = new BigDecimal(Double.toString(g));
+                            BigDecimal e = c.subtract(d);
+                          strre = "=" + e.stripTrailingZeros().toPlainString();
+                  TV.setText(strre);}}
 
-                          } else {
-                          strre = "=" + String.valueOf(tresult);
-                          TV.setText(strre);
-                      }
+                      }} catch (Exception e) {TV.setText("error");
+      }
+    }
 
-
-                      }
-          }
-
-      }}catch (Exception e){TV.setText("error"); }
-    }}
+      }

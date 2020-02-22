@@ -8,22 +8,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="155dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/avatur"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/circle_two"/>
+            android:layout_marginTop="10dp"
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@drawable/circle_two"
+            fresco:failureImage="@drawable/circle_one"
+            />
+
+
 
 
         
         <LinearLayout
             android:layout_width="350dp"
-            android:layout_height="155dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -42,26 +47,30 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="name"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:textSize="26sp"
+                android:layout_marginTop="2dp"
+                android:textSize="22sp"
                 />
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="description"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:paddingRight="25dp"
+                android:singleLine="false"
                 android:layout_marginTop="3dp"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="35dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
                 >
 
 
@@ -69,7 +78,7 @@
                     android:id="@+id/cir"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:background="@drawable/circle_two"
+                    android:background="@drawable/circle_three"
                    android:layout_marginTop="3dp"
                 android:layout_marginLeft="10dp"
 
@@ -83,7 +92,7 @@
 
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/cir"
-                    android:text="C"
+                    android:text="language"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -100,7 +109,7 @@
                     android:id="@+id/num_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="14236"
+                    android:text="number"
 
 
                     android:layout_marginLeft="5dp"
@@ -119,7 +128,7 @@
                     android:id="@+id/num_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4375556"
+                    android:text="number"
 
                     android:layout_marginLeft="5dp"
 

@@ -13,6 +13,5 @@
         android:textColor="#000000"
         android:id="@+id/title"
         android:textSize="18sp"
-        app:showAsAction="always"
-        app:actionViewClass="android.support.v7.widget.SearchView"/>
+        />
 </LinearLayout>

@@ -26,25 +26,25 @@ public class FragmentOne extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_res_layout, container, false);
-        initData();
+       // initData();
 
         recyclerView =(RecyclerView)view.findViewById(R.id.rec_res);
 
-        recyclerView.setAdapter(mAdapter = new RecOneAdapter(getActivity(),mDatas));
+        recyclerView.setAdapter(mAdapter = new RecOneAdapter(getActivity()));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
         return view;
     }
 
-    protected void initData()
+   /* protected void initData()
     {
         mDatas = new ArrayList<String>();
         for (int i = 'A'; i < 'z'; i++)
         {
             mDatas.add("" + (char) i);
         }
-    }
+    }*/
 
 
 }

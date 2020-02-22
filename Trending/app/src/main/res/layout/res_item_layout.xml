@@ -99,7 +99,7 @@
                     android:id="@+id/star"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/star"
+                    android:background="@mipmap/star"
 
 
                     android:layout_marginLeft="10dp"
@@ -120,7 +120,7 @@
                     android:id="@+id/fork"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/fork"
+                    android:background="@mipmap/fork"
                     android:layout_marginLeft="10dp"
 
                     android:layout_toRightOf="@+id/num_one"/>

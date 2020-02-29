@@ -37,14 +37,6 @@ public class FragmentOne extends Fragment {
         return view;
     }
 
-   /* protected void initData()
-    {
-        mDatas = new ArrayList<String>();
-        for (int i = 'A'; i < 'z'; i++)
-        {
-            mDatas.add("" + (char) i);
-        }
-    }*/
 
 
 }

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         fragmentlist.add(fragmentone);
         fragmentlist.add(fragmenttwo);
         ActionBar actionBar = getSupportActionBar();
-        //actionBar.setTitle("Trending");
+
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
       actionBar.setCustomView(R.layout.actionbar_title);
         adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(),fragmentlist);

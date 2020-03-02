@@ -62,11 +62,10 @@ public void onBindViewHolder( VH holder, int position) {
 
 
 
+               holder.cir.setBackground(holder.drawable);
                holder.cir.setVisibility(ImageView.VISIBLE);
+               holder.drawable.setColor(Color.parseColor(list.get(position).getLanguageColor()));
 
-
-
-              holder.cir.setBackgroundColor(Color.parseColor(list.get(position).getLanguageColor()));
 
            }
            else  {
